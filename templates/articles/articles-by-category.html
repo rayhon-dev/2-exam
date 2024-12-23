@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category|title }} Articles - Astrum IT Academy H4ck3rs{% endblock %}
+
+{% block content %}
+    <h2>{{ category|title }} Articles</h2>
+    {% if articles %}
+            <div class="article-list">
+                {% for article in articles %}
+                    <article class="post">
+                        <h1>{{ article.title }}</h1>
+                        <h3>{{ article.short_content }}</h3>
+                        <p class="post-meta">
+                            <span class="author">By: {{ article.author }}</span>
+                            <span class="date">Date: {{ article.created_at }}</span>
+                        </p>
+                        <a href="{% url 'articles:detail' article.id %}" class="read-more">Read More</a>
+                    </article>
+                {% endfor %}
+            </div>
+    {% else %}
+        <p>There are no articles in this category</p>
+    {% endif %}
+{% endblock %}

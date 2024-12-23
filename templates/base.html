@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="page-container">
+    <div class="content-wrap">
+        {# HEADER #}
+        {% include 'includes/header.html' %}
+
+        {# NAVBAR #}
+        {% include 'includes/nav.html' %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {# FOOTER #}
+    <footer>
+        <p>&copy; 2023 Astrum IT Academy H4ck3rs. All rights reserved. Use responsibly.</p>
+    </footer>
+
+    <button id="mode-toggle">Light Mode</button>
+
+    <script>
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLightMode = body.classList.contains('light-mode');
+            modeToggle.textContent = isLightMode ? 'Dark Mode' : 'Light Mode';
+        });
+    </script>
+</body>
+</html>
+
